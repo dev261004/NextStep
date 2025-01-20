@@ -1,12 +1,30 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
-import { TextInput, IconButton, Card } from "react-native-paper";
+import { TextInput, IconButton, Card, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function LoginScreen() {
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [secureText, setSecureText] = useState(true);
   const navigation = useNavigation(); // Get the navigation prop
+
+  const handleLogin = () => {
+    if (username == "") {
+      setErrorMessage("First fill Email address");
+    } else if (password == "") {
+      setErrorMessage("Fill Password");
+    } else if (username == "Admin" && password == "Admin") {
+      setErrorMessage("");
+      // alert("Login in as " + username);
+      navigation.navigate("ProfileSetUp");
+    } else {
+      setErrorMessage("Wrong ID or Password, Try again");
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -22,6 +40,8 @@ export default function LoginScreen() {
             <Icon name="email-outline" size={20} color="#000" />
             <TextInput
               placeholder="Enter your email address"
+              value={username}
+              onChangeText={setUsername}
               mode="outlined"
               outlineColor="#fff"
               style={styles.textInput}
@@ -37,6 +57,8 @@ export default function LoginScreen() {
             <Icon name="lock" size={20} color="#000" />
             <TextInput
               placeholder="Enter your password"
+              value={password}
+              onChangeText={setPassword}
               mode="outlined"
               outlineColor="#fff"
               activeOutlineColor="#fff"
@@ -57,6 +79,10 @@ export default function LoginScreen() {
         </Card>
       </View>
 
+      {/* Error Message */}
+      {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
+
+      {/* Forgot password Text(link) */}
       <TouchableOpacity>
         <Text
           style={styles.forgotPassword}
@@ -66,16 +92,22 @@ export default function LoginScreen() {
         </Text>
       </TouchableOpacity>
 
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity onPress={() => console.log("Login button pressed")}>
-          <View style={styles.button}>
-            <Text style={styles.buttonText}>Login</Text>
-          </View>
+      {/* Login Button */}
+      <LinearGradient
+        colors={["#00F996", "#00A6F9"]} // Define your gradient colors
+        start={{ x: 0, y: 0 }} // Start at the left (horizontal)
+        end={{ x: 1, y: 0 }} // End at the right (horizontal)
+        style={styles.gradientButton}
+      >
+        <TouchableOpacity style={styles.button} onPress={handleLogin}>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
-      </View>
+      </LinearGradient>
 
+      {/* Text Continue with */}
       <Text style={styles.orText}>- OR Continue with -</Text>
 
+      {/* Social Login */}
       <View style={styles.socialButtons}>
         <IconButton
           icon="google"
@@ -151,7 +183,7 @@ const styles = StyleSheet.create({
     transform: [{ translateY: -10 }],
   },
   forgotPassword: {
-    color: "teal",
+    color: "#0077b3",
     textAlign: "right",
     marginBottom: 20,
     marginTop: 10,
@@ -160,11 +192,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+  gradientButton: {
+    borderRadius: 10,
+  },
   button: {
-    marginBottom: 10,
     width: 320,
     alignItems: "center",
-    backgroundColor: "#000",
     borderRadius: 10,
   },
   buttonText: {
@@ -186,9 +219,12 @@ const styles = StyleSheet.create({
   },
   socialIcon: {
     marginHorizontal: 10,
+    borderWidth: 2,
+    borderColor: "#00F996",
   },
   signUpText: {
     textAlign: "center",
-    color: "blue",
+    color: "#0077b3",
+    fontWeight: "bold",
   },
 });

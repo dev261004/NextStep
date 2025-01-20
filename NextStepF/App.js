@@ -6,6 +6,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import LoginScreen from "./screens/Login.js";
 import SignUpScreen from "./screens/SignUp.js";
 import ForgotPasswordScreen from "./screens/ForgotPassword.js";
+import ProfileSetUp from "./screens/ProfileSetUp.js";
 
 const Stack = createStackNavigator();
 
@@ -26,6 +27,11 @@ const App = () => {
         <Stack.Screen
           name="ForgotPassword"
           component={ForgotPasswordScreen}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="ProfileSetUp"
+          component={ProfileSetUp}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

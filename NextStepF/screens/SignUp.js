@@ -8,6 +8,7 @@ import {
   HelperText,
 } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
 
 const SignUp = () => {
@@ -23,9 +24,13 @@ const SignUp = () => {
     if (password !== confirmPassword) {
       setErrorMessage("Passwords don't match");
       return;
+    } else if (username == "") {
+      setErrorMessage("Fill Email Address");
+    } else {
+      //signUp operation here
+      setErrorMessage("");
+      alert("Account Created as \nuser: " + username + "\npass: " + password);
     }
-    setErrorMessage("");
-    // Continue with sign-up logic...
   };
 
   return (
@@ -119,14 +124,16 @@ const SignUp = () => {
       </Text>
 
       {/* Sign-Up Button */}
-      <Button
-        mode="contained"
-        onPress={handleSignUp}
-        style={styles.button}
-        labelStyle={styles.buttonText}
+      <LinearGradient
+        colors={["#00F996", "#00A6F9"]} // Define your gradient colors
+        start={{ x: 0, y: 0 }} // Start at the left (horizontal)
+        end={{ x: 1, y: 0 }} // End at the right (horizontal)
+        style={styles.gradientButton}
       >
-        Create Account
-      </Button>
+        <TouchableOpacity style={styles.button} onPress={handleSignUp}>
+          <Text style={styles.buttonText}>Create Account</Text>
+        </TouchableOpacity>
+      </LinearGradient>
 
       {/* Social Media Login */}
       <View style={styles.socialContainer}>
@@ -154,11 +161,9 @@ const SignUp = () => {
       </View>
 
       {/* Login Link */}
-      <View style={styles.loginLinkContainer}>
-        <Button mode="text" onPress={() => navigation.navigate("Login")}>
-          Already Have an Account
-        </Button>
-      </View>
+      <TouchableOpacity onPress={() => navigation.navigate("Login")}>
+        <Text style={styles.loginText}>Already Have an Account</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -197,17 +202,20 @@ const styles = StyleSheet.create({
     color: "#000",
     backgroundColor: "#fff",
   },
+  gradientButton: {
+    marginTop: 15,
+    borderRadius: 10,
+  },
   button: {
     marginTop: 10,
     marginBottom: 10,
     width: 320,
     alignItems: "center",
-    backgroundColor: "#000",
     borderRadius: 10,
   },
   buttonText: {
     fontWeight: "bold",
-    padding: 5,
+    color: "#fff",
     fontSize: 20,
   },
   socialContainer: {
@@ -222,6 +230,8 @@ const styles = StyleSheet.create({
   },
   socialIcon: {
     marginHorizontal: 10,
+    borderWidth: 2,
+    borderColor: "#00F996",
   },
   loginLinkContainer: {
     alignItems: "center",
@@ -231,6 +241,11 @@ const styles = StyleSheet.create({
     right: 15,
     top: "50%",
     transform: [{ translateY: -10 }],
+  },
+  loginText: {
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "#0077b3",
   },
 });
 
