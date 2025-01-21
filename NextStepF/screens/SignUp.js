@@ -1,15 +1,19 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import {
-  Card,
-  TextInput,
-  Button,
-  IconButton,
-  HelperText,
-} from "react-native-paper";
+  View,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  Dimensions,
+} from "react-native";
+import { Card, TextInput, IconButton, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useNavigation } from "@react-navigation/native";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
+// Get device screen width and height
+const { width, height } = Dimensions.get("window");
 
 const SignUp = () => {
   const navigation = useNavigation();
@@ -21,22 +25,22 @@ const SignUp = () => {
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSignUp = () => {
-    if (password !== confirmPassword) {
+    if (username === "") {
+      setErrorMessage("Fill Email Address");
+    } else if (password !== confirmPassword) {
       setErrorMessage("Passwords don't match");
       return;
-    } else if (username == "") {
-      setErrorMessage("Fill Email Address");
     } else {
-      //signUp operation here
       setErrorMessage("");
       alert("Account Created as \nuser: " + username + "\npass: " + password);
+      navigation.navigate("ProfileSetUp");
     }
   };
 
   return (
     <View style={styles.container}>
       {/* Title */}
-      <View style={{ marginBottom: 10, marginTop: 30 }}>
+      <View style={{ marginBottom: 10, marginTop: height * 0.03 }}>
         <Text style={styles.header}>Create an </Text>
         <Text style={styles.header}>account</Text>
       </View>
@@ -54,11 +58,12 @@ const SignUp = () => {
             outlineColor="#fff"
             keyboardType="email-address"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
 
-      {/* Passsword */}
+      {/* Password */}
       <Card style={styles.inputCard}>
         <View style={styles.inputWrapper}>
           <Icon name="lock" size={20} color="#000" />
@@ -69,6 +74,7 @@ const SignUp = () => {
             mode="outlined"
             outlineColor="#fff"
             activeOutlineColor="#fff"
+            cursorColor="#000"
             style={styles.textInput}
             secureTextEntry={passwordVisible}
           />
@@ -90,12 +96,13 @@ const SignUp = () => {
         <View style={styles.inputWrapper}>
           <Icon name="lock" size={20} color="#000" />
           <TextInput
-            placeholder="Enter your password"
+            placeholder="Confirm your password"
             value={confirmPassword}
             onChangeText={setConfirmPassword}
             mode="outlined"
             outlineColor="#fff"
             activeOutlineColor="#fff"
+            cursorColor="#000"
             style={styles.textInput}
             secureTextEntry={confirmPasswordVisible}
           />
@@ -115,12 +122,9 @@ const SignUp = () => {
       {/* Error Message */}
       {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
 
-      {/* T&C */}
-      <Text style={{ fontSize: 10, marginTop: 10, marginLeft: 10 }}>
-        By creating an account,
-      </Text>
-      <Text style={{ fontSize: 10, marginLeft: 10 }}>
-        You agree to our Terms and Condition policy
+      {/* Terms and Conditions */}
+      <Text style={{ fontSize: RFValue(10), marginTop: 10, marginLeft: 10 }}>
+        By creating an account, you agree to our Terms and Condition policy
       </Text>
 
       {/* Sign-Up Button */}
@@ -141,19 +145,19 @@ const SignUp = () => {
         <View style={styles.socialButtons}>
           <IconButton
             icon="google"
-            size={30}
+            size={RFValue(30)}
             onPress={() => console.log("Google login")}
             style={styles.socialIcon}
           />
           <IconButton
             icon="apple"
-            size={30}
+            size={RFValue(30)}
             onPress={() => console.log("Apple login")}
             style={styles.socialIcon}
           />
           <IconButton
             icon="facebook"
-            size={30}
+            size={RFValue(30)}
             onPress={() => console.log("Facebook login")}
             style={styles.socialIcon}
           />
@@ -162,7 +166,7 @@ const SignUp = () => {
 
       {/* Login Link */}
       <TouchableOpacity onPress={() => navigation.navigate("Login")}>
-        <Text style={styles.loginText}>Already Have an Account</Text>
+        <Text style={styles.loginText}>Already Have an Account?</Text>
       </TouchableOpacity>
     </View>
   );
@@ -172,24 +176,24 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    padding: 20,
+    paddingHorizontal: width * 0.05, // Responsive padding
     backgroundColor: "white",
   },
   header: {
-    fontSize: 38,
+    fontSize: RFPercentage(5), // Responsive font size
     fontWeight: "bold",
     textAlign: "start",
-    marginLeft: 10,
+    marginLeft: width * 0.05,
   },
   inputCard: {
-    marginTop: 20,
+    marginTop: height * 0.02,
     borderRadius: 8,
     elevation: 0,
     borderWidth: 1,
     borderColor: "#ddd",
-    paddingLeft: 10,
+    paddingLeft: width * 0.03, // Dynamic padding
     backgroundColor: "#fff",
-    width: 320,
+    width: width * 0.9, // Make input fields responsive
   },
   inputWrapper: {
     flexDirection: "row",
@@ -197,55 +201,53 @@ const styles = StyleSheet.create({
   },
   textInput: {
     flex: 1,
-    marginLeft: 10,
-    fontSize: 16,
+    marginLeft: width * 0.03, // Adjust input text field width
+    fontSize: RFValue(16),
     color: "#000",
     backgroundColor: "#fff",
   },
   gradientButton: {
-    marginTop: 15,
+    marginTop: height * 0.03,
     borderRadius: 10,
   },
   button: {
-    marginTop: 10,
-    marginBottom: 10,
-    width: 320,
+    marginTop: height * 0.01,
+    marginBottom: height * 0.02,
+    width: width * 0.9, // Make button width responsive
     alignItems: "center",
     borderRadius: 10,
   },
   buttonText: {
     fontWeight: "bold",
     color: "#fff",
-    fontSize: 20,
+    fontSize: RFValue(18), // Adjust font size responsively
   },
   socialContainer: {
     alignItems: "center",
-    marginVertical: 10,
+    marginVertical: height * 0.02, // Dynamic margin
   },
   socialButtons: {
     flexDirection: "row",
     justifyContent: "space-evenly",
-    width: "60%",
-    marginTop: 10,
+    width: width * 0.6, // Adjust button width dynamically
+    marginTop: height * 0.02,
   },
   socialIcon: {
-    marginHorizontal: 10,
+    marginHorizontal: width * 0.03,
     borderWidth: 2,
     borderColor: "#00F996",
-  },
-  loginLinkContainer: {
-    alignItems: "center",
-  },
-  eyeIcon: {
-    position: "absolute",
-    right: 15,
-    top: "50%",
-    transform: [{ translateY: -10 }],
   },
   loginText: {
     textAlign: "center",
     fontWeight: "bold",
     color: "#0077b3",
+    marginTop: height * 0.02,
+  },
+  eyeIcon: {
+    position: "absolute",
+    right: width * 0.05, // Adjust eye icon position
+    top: "50%",
+    transform: [{ translateY: -10 }],
   },
 });
 

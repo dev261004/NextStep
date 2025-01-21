@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
+import { View, StyleSheet, Text, TouchableOpacity, Dimensions } from "react-native";
 import { TextInput, IconButton, Card, HelperText } from "react-native-paper";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { useNavigation } from "@react-navigation/native"; // Import the useNavigation hook
 import { LinearGradient } from "expo-linear-gradient";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
+
+const { width, height } = Dimensions.get("window");
 
 export default function LoginScreen() {
   const [username, setUsername] = useState("");
@@ -19,8 +22,7 @@ export default function LoginScreen() {
       setErrorMessage("Fill Password");
     } else if (username == "Admin" && password == "Admin") {
       setErrorMessage("");
-      // alert("Login in as " + username);
-      navigation.navigate("ProfileSetUp");
+      navigation.navigate("Home");
     } else {
       setErrorMessage("Wrong ID or Password, Try again");
     }
@@ -28,7 +30,7 @@ export default function LoginScreen() {
 
   return (
     <View style={styles.container}>
-      <View style={{ marginBottom: 20, marginTop: 30 }}>
+      <View style={styles.headerContainer}>
         <Text style={styles.title}>Welcome </Text>
         <Text style={styles.title}>Back!</Text>
       </View>
@@ -51,7 +53,7 @@ export default function LoginScreen() {
           </View>
         </Card>
 
-        {/* password field */}
+        {/* Password */}
         <Card style={styles.inputCard}>
           <View style={styles.inputWrapper}>
             <Icon name="lock" size={20} color="#000" />
@@ -82,7 +84,7 @@ export default function LoginScreen() {
       {/* Error Message */}
       {errorMessage && <HelperText type="error">{errorMessage}</HelperText>}
 
-      {/* Forgot password Text(link) */}
+      {/* Forgot Password */}
       <TouchableOpacity>
         <Text
           style={styles.forgotPassword}
@@ -93,16 +95,18 @@ export default function LoginScreen() {
       </TouchableOpacity>
 
       {/* Login Button */}
-      <LinearGradient
-        colors={["#00F996", "#00A6F9"]} // Define your gradient colors
-        start={{ x: 0, y: 0 }} // Start at the left (horizontal)
-        end={{ x: 1, y: 0 }} // End at the right (horizontal)
-        style={styles.gradientButton}
-      >
-        <TouchableOpacity style={styles.button} onPress={handleLogin}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
-      </LinearGradient>
+      <View style={styles.Center}>
+        <LinearGradient
+          colors={["#00F996", "#00A6F9"]} // Define your gradient colors
+          start={{ x: 0, y: 0 }} // Start at the left (horizontal)
+          end={{ x: 1, y: 0 }} // End at the right (horizontal)
+          style={styles.gradientButton}
+        >
+          <TouchableOpacity style={styles.button} onPress={handleLogin}>
+            <Text style={styles.buttonText}>Login</Text>
+          </TouchableOpacity>
+        </LinearGradient>
+      </View>
 
       {/* Text Continue with */}
       <Text style={styles.orText}>- OR Continue with -</Text>
@@ -111,19 +115,19 @@ export default function LoginScreen() {
       <View style={styles.socialButtons}>
         <IconButton
           icon="google"
-          size={30}
+          size={RFValue(30)}
           onPress={() => console.log("Google login")}
           style={styles.socialIcon}
         />
         <IconButton
           icon="apple"
-          size={30}
+          size={RFValue(30)}
           onPress={() => console.log("Apple login")}
           style={styles.socialIcon}
         />
         <IconButton
           icon="facebook"
-          size={30}
+          size={RFValue(30)}
           onPress={() => console.log("Facebook login")}
           style={styles.socialIcon}
         />
@@ -139,89 +143,108 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    paddingHorizontal: width * 0.05,  // responsive padding based on screen width
     justifyContent: "center",
     backgroundColor: "white",
   },
 
+  headerContainer: {
+    marginBottom: height * 0.02,
+    marginTop: height * 0.03,
+  },
+
   title: {
-    fontSize: 38,
+    fontSize: RFPercentage(5),  // responsive font size
     fontWeight: "bold",
     textAlign: "start",
-    marginLeft: 10,
+    marginLeft: width * 0.05,
   },
+
   formContainer: {
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 30,
+    marginTop: height * 0.03,
   },
+
   inputCard: {
-    marginTop: 20,
+    marginTop: height * 0.02,
     borderRadius: 8,
     elevation: 0,
     borderWidth: 1,
     borderColor: "#ddd",
-    paddingLeft: 10,
+    paddingLeft: width * 0.03,
     backgroundColor: "#fff",
-    width: 320,
+    width: width * 0.9,  // Make the input fields responsive
   },
+
   inputWrapper: {
     flexDirection: "row",
     alignItems: "center",
   },
+
   textInput: {
     flex: 1,
-    marginLeft: 10,
-    fontSize: 16,
+    marginLeft: width * 0.03,
+    fontSize: RFValue(16),
     color: "#000",
     backgroundColor: "#fff",
   },
+
   eyeIcon: {
     position: "absolute",
-    right: 15,
+    right: width * 0.05,
     top: "50%",
     transform: [{ translateY: -10 }],
   },
+
   forgotPassword: {
     color: "#0077b3",
     textAlign: "right",
-    marginBottom: 20,
-    marginTop: 10,
+    marginBottom: height * 0.02,
+    marginTop: height * 0.01,
   },
-  buttonContainer: {
+
+  Center: {
     justifyContent: "center",
     alignItems: "center",
   },
+
   gradientButton: {
     borderRadius: 10,
+    width: width * 0.9,  // Make button width responsive
   },
+
   button: {
-    width: 320,
     alignItems: "center",
     borderRadius: 10,
   },
+
   buttonText: {
     textAlign: "center",
-    padding: 10,
+    paddingVertical: height * 0.015,
     color: "white",
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: RFValue(18),
   },
+
   orText: {
     textAlign: "center",
-    marginVertical: 15,
+    marginVertical: height * 0.02,
     color: "gray",
   },
+
   socialButtons: {
     flexDirection: "row",
     justifyContent: "center",
-    marginBottom: 20,
+    marginBottom: height * 0.03,
   },
+
   socialIcon: {
-    marginHorizontal: 10,
+    marginHorizontal: width * 0.03,
     borderWidth: 2,
     borderColor: "#00F996",
   },
+
   signUpText: {
     textAlign: "center",
     color: "#0077b3",

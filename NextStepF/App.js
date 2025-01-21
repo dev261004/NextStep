@@ -7,13 +7,14 @@ import LoginScreen from "./screens/Login.js";
 import SignUpScreen from "./screens/SignUp.js";
 import ForgotPasswordScreen from "./screens/ForgotPassword.js";
 import ProfileSetUp from "./screens/ProfileSetUp.js";
+import HomeScreen from "./screens/Home.js";
 
 const Stack = createStackNavigator();
 
 const App = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
+      <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Login"
           component={LoginScreen}
@@ -32,6 +33,11 @@ const App = () => {
         <Stack.Screen
           name="ProfileSetUp"
           component={ProfileSetUp}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={HomeScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>

@@ -68,6 +68,7 @@ const ForgotPassword = () => {
         start={{ x: 0, y: 0 }} // Start at the left (horizontal)
         end={{ x: 1, y: 0 }} // End at the right (horizontal)
         style={styles.gradientButton}
+        
       >
         <TouchableOpacity style={styles.button} onPress={handleEmail}>
           <Text style={styles.buttonText}>Submit</Text>
@@ -86,6 +87,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
+    justifyContent: "center",
     backgroundColor: "#ffffff",
   },
   title: {
@@ -142,6 +144,8 @@ const styles = StyleSheet.create({
   gradientButton: {
     marginTop: 30,
     borderRadius: 10,
+    justifyContent: "center",
+    alignItems: "center",
   },
 
   loginText: {
