@@ -8,6 +8,10 @@ import SignUpScreen from "./screens/SignUp.js";
 import ForgotPasswordScreen from "./screens/ForgotPassword.js";
 import ProfileSetUp from "./screens/ProfileSetUp.js";
 import HomeScreen from "./screens/Home.js";
+import Cameratab from "./screens/Tabs/Camera.js";
+import Nearby from "./screens/Tabs/Nearby.js";
+import Status from "./screens/Tabs/Status.js";
+import Survey from "./screens/Tabs/Survey.js";
 
 const Stack = createStackNavigator();
 
@@ -39,6 +43,26 @@ const App = () => {
           name="Home"
           component={HomeScreen}
           options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Cameratab"
+          component={Cameratab}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="Nearbytab"
+          component={Nearby}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="Statustab"
+          component={Status}
+          options={{ headerShown: true }}
+        />
+        <Stack.Screen
+          name="Surveytab"
+          component={Survey}
+          options={{ headerShown: true }}
         />
       </Stack.Navigator>
     </NavigationContainer>

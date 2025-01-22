@@ -149,6 +149,7 @@ export default function HomeScreen() {
           value={searchText}
           onChangeText={setSearchText}
         />
+        <Icon name="microphone" size={24} color="#888" />
       </View>
 
       {/* Leader Section */}
@@ -173,19 +174,40 @@ export default function HomeScreen() {
 
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity>
+        <TouchableOpacity style={styles.tabsC}>
           <Icon name="home" size={28} color="#00A6F9" />
+
           <Text style={styles.navTextActive}>Home</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabsC}
+          onPress={() => navigation.navigate("Nearbytab")}
+        >
           <Icon name="map-marker" size={28} color="#888" />
           <Text style={styles.navText}>Near by</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabsC}
+          onPress={() => navigation.navigate("Cameratab")}
+        >
           <Icon name="camera" size={28} color="#888" />
-          <Text style={styles.navText}>Tracking</Text>
+          <Text style={styles.navText}>Camera</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabsC}
+          onPress={() => navigation.navigate("Statustab")}
+        >
+          <Icon name="list-status" size={28} color="#888" />
+          <Text style={styles.navText}>Status</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          style={styles.tabsC}
+          onPress={() => navigation.navigate("Surveytab")}
+        >
           <Icon name="file-document" size={28} color="#888" />
           <Text style={styles.navText}>Surveys</Text>
         </TouchableOpacity>
@@ -258,6 +280,8 @@ const styles = StyleSheet.create({
   leaderItem: {
     alignItems: "center",
     marginRight: 15,
+    // backgroundColor:"#000",
+    // height:150,
   },
   leaderImage: {
     width: 60,
@@ -319,5 +343,9 @@ const styles = StyleSheet.create({
   navTextActive: {
     fontSize: 12,
     color: "#00A6F9",
+  },
+  tabsC: {
+    justifyContent: "center",
+    alignItems: "center",
   },
 });

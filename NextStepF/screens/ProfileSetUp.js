@@ -1,27 +1,21 @@
+import DateTimePicker from "@react-native-community/datetimepicker"; // Import DateTimePicker
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios"; // Add axios for API calls
+import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
 import {
-  View,
+  Platform,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
-  ScrollView,
-  Platform,
+  View,
 } from "react-native";
-import {
-  TextInput,
-  IconButton,
-  Card,
-  Button,
-  Menu,
-  Divider,
-} from "react-native-paper";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-import { useNavigation } from "@react-navigation/native";
-import { LinearGradient } from "expo-linear-gradient";
-import DateTimePicker from "@react-native-community/datetimepicker"; // Import DateTimePicker
+import { Card, IconButton, TextInput } from "react-native-paper";
 
 export default function SetupProfileScreen() {
   const [email, setEmail] = useState("user123@gmail.com");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [flatNo, setFlatNo] = useState("");
   const [address, setAddress] = useState("");
@@ -35,6 +29,29 @@ export default function SetupProfileScreen() {
 
   const navigation = useNavigation();
 
+  // Fetch city and state based on pincode
+  const fetchCityAndState = async (pincode) => {
+    if (pincode.length === 6) {
+      try {
+        const response = await axios.get(
+          `https://api.postalpincode.in/pincode/${pincode}`
+        );
+        const data = response.data[0];
+        if (data.Status === "Success") {
+          setCity(data.PostOffice[0].District);
+          setState(data.PostOffice[0].State);
+        } else {
+          alert("Invalid Pincode");
+          setCity("");
+          setState("");
+        }
+      } catch (error) {
+        console.error("Error fetching city and state:", error);
+        alert("An error occurred while fetching city and state");
+      }
+    }
+  };
+
   const handleAadharChange = (text) => {
     // Restrict Aadhar to 12 digits
     if (text.length <= 12) {
@@ -46,6 +63,7 @@ export default function SetupProfileScreen() {
     // Restrict Pincode to 6 digits
     if (text.length <= 6 && /^[0-9]*$/.test(text)) {
       setPincode(text);
+      fetchCityAndState(text); // Trigger city and state fetching
     }
   };
 
@@ -104,6 +122,23 @@ export default function SetupProfileScreen() {
         </View>
       </Card>
 
+      {/* Name */}
+      <Card style={styles.inputCard}>
+        <View style={styles.inputWrapper}>
+          <TextInput
+            placeholder="Name"
+            value={name}
+            onChangeText={setName}
+            mode="outlined"
+            style={styles.textInput}
+            keyboardType="email-address"
+            outlineColor="#fff"
+            activeOutlineColor="#fff"
+            cursorColor="#000"
+          />
+        </View>
+      </Card>
+
       {/* Password */}
       <Card style={styles.inputCard}>
         <TextInput
@@ -111,11 +146,14 @@ export default function SetupProfileScreen() {
           value={password}
           onChangeText={setPassword}
           mode="outlined"
+          style={styles.textInput}
           outlineColor="#fff"
           activeOutlineColor="#fff"
+          cursorColor="#000"
           secureTextEntry
         />
       </Card>
+      <Text value={password}>{password}</Text>
 
       <TouchableOpacity>
         <Text style={styles.changePasswordText}>Change Password</Text>
@@ -134,6 +172,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="default"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
@@ -150,6 +189,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="default"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
@@ -166,6 +206,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="number-pad"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
@@ -182,6 +223,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="default"
             activeOutlineColor="#fff"
+            editable={false} // City is auto-filled
           />
         </View>
       </Card>
@@ -198,6 +240,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="default"
             activeOutlineColor="#fff"
+            editable={false} // State is auto-filled
           />
         </View>
       </Card>
@@ -217,6 +260,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="number-pad"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
@@ -233,6 +277,7 @@ export default function SetupProfileScreen() {
             style={styles.textInput}
             keyboardType="default"
             activeOutlineColor="#fff"
+            cursorColor="#000"
           />
         </View>
       </Card>
@@ -270,7 +315,13 @@ export default function SetupProfileScreen() {
         end={{ x: 1, y: 0 }}
         style={styles.gradientButton}
       >
-        <TouchableOpacity style={styles.button} onPress={() => alert("Save")}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={() => {
+            alert("Save");
+            navigation.navigate("Home");
+          }}
+        >
           <Text style={styles.buttonText}>Save</Text>
         </TouchableOpacity>
       </LinearGradient>
