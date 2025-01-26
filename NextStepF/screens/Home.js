@@ -235,7 +235,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     marginBottom: 15,
-    marginTop: 20,
+    marginTop: 25,
   },
   headerTitleCon: {
     width: 150,
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
   },
   leadersCon: {
     paddingVertical: 5,
-    height: 100,
+    height: 120,
   },
   leaderList: {},
   leaderItem: {

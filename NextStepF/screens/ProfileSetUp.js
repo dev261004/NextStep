@@ -140,7 +140,7 @@ export default function SetupProfileScreen() {
       </Card>
 
       {/* Password */}
-      <Card style={styles.inputCard}>
+      {/* <Card style={styles.inputCard}>
         <TextInput
           placeholder="Password"
           value={password}
@@ -157,9 +157,10 @@ export default function SetupProfileScreen() {
 
       <TouchableOpacity>
         <Text style={styles.changePasswordText}>Change Password</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
       {/* Address Details */}
+      <Text style={styles.sectionTitle}>Address </Text>
 
       <Card style={styles.inputCard}>
         <View style={styles.inputWrapper}>
@@ -334,15 +335,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#fff",
     padding: 20,
+    // justifyContent:"center",
   },
   header: {
     flexDirection: "row",
     alignItems: "center",
+    marginTop:10,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: "bold",
     marginLeft: 10,
+    
   },
   profileContainer: {
     alignItems: "center",
@@ -372,7 +376,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ddd",
     backgroundColor: "#fff",
-    width: 320,
+    width: "100%",
     elevation: 2,
   },
   inputWrapper: {
