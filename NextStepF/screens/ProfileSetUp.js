@@ -340,13 +340,12 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: "row",
     alignItems: "center",
-    marginTop:10,
+    marginTop: 10,
   },
   headerTitle: {
     fontSize: 20,
     fontWeight: "bold",
     marginLeft: 10,
-    
   },
   profileContainer: {
     alignItems: "center",

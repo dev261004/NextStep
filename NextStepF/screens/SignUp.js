@@ -149,12 +149,12 @@ const SignUp = () => {
             onPress={() => console.log("Google login")}
             style={styles.socialIcon}
           />
-          <IconButton
+          {/* <IconButton
             icon="apple"
             size={RFValue(30)}
             onPress={() => console.log("Apple login")}
             style={styles.socialIcon}
-          />
+          /> */}
           <IconButton
             icon="facebook"
             size={RFValue(30)}

@@ -47,6 +47,7 @@ const ForgotPassword = () => {
             mode="outlined"
             outlineColor="#fff"
             activeOutlineColor="#fff"
+            cursorColor="#000"
             style={styles.textInput}
             keyboardType="email-address"
           />

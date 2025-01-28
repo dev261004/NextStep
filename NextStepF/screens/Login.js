@@ -1,7 +1,13 @@
-import { useNavigation } from "@react-navigation/native"; 
+import { useNavigation } from "@react-navigation/native";
 import { LinearGradient } from "expo-linear-gradient";
 import React, { useState } from "react";
-import { Dimensions, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 import { Card, HelperText, IconButton, TextInput } from "react-native-paper";
 import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
@@ -49,6 +55,7 @@ export default function LoginScreen() {
               style={styles.textInput}
               keyboardType="email-address"
               activeOutlineColor="#fff"
+              cursorColor="#000"
             />
           </View>
         </Card>
@@ -64,6 +71,7 @@ export default function LoginScreen() {
               mode="outlined"
               outlineColor="#fff"
               activeOutlineColor="#fff"
+              cursorColor="#000"
               style={styles.textInput}
               secureTextEntry={secureText}
             />
@@ -119,12 +127,12 @@ export default function LoginScreen() {
           onPress={() => console.log("Google login")}
           style={styles.socialIcon}
         />
-        <IconButton
+        {/* <IconButton
           icon="apple"
           size={RFValue(30)}
           onPress={() => console.log("Apple login")}
           style={styles.socialIcon}
-        />
+        /> */}
         <IconButton
           icon="facebook"
           size={RFValue(30)}
@@ -143,7 +151,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingHorizontal: width * 0.05,  // responsive padding based on screen width
+    paddingHorizontal: width * 0.05, // responsive padding based on screen width
     justifyContent: "center",
     backgroundColor: "white",
   },
@@ -154,7 +162,7 @@ const styles = StyleSheet.create({
   },
 
   title: {
-    fontSize: RFPercentage(5),  // responsive font size
+    fontSize: RFPercentage(5), // responsive font size
     fontWeight: "bold",
     textAlign: "start",
     marginLeft: width * 0.05,
@@ -174,7 +182,7 @@ const styles = StyleSheet.create({
     borderColor: "#ddd",
     paddingLeft: width * 0.03,
     backgroundColor: "#fff",
-    width: width * 0.9,  // Make the input fields responsive
+    width: width * 0.9, // Make the input fields responsive
   },
 
   inputWrapper: {
@@ -211,7 +219,7 @@ const styles = StyleSheet.create({
 
   gradientButton: {
     borderRadius: 10,
-    width: width * 0.9,  // Make button width responsive
+    width: width * 0.9, // Make button width responsive
   },
 
   button: {
