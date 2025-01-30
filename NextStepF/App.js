@@ -9,8 +9,8 @@ import SignUpScreen from "./screens/SignUp.js";
 import ForgotPasswordScreen from "./screens/ForgotPassword.js";
 import ProfileSetUp from "./screens/ProfileSetUp.js";
 import HomeScreen from "./screens/Home.js";
-import Cameratab from "./screens/Tabs/Camera.js";
-import Nearby from "./screens/Tabs/Nearby.js";
+import Submission from "./screens/Tabs/Submission";
+import Connect from "./screens/Tabs/Connect.js";
 import Status from "./screens/Tabs/Status.js";
 import Survey from "./screens/Tabs/Survey.js";
 
@@ -46,13 +46,13 @@ const App = () => {
           options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Cameratab"
-          component={Cameratab}
-          options={{ headerShown: true }}
+          name="Submission"
+          component={Submission}
+          options={{ headerShown: false }}
         />
         <Stack.Screen
-          name="Nearbytab"
-          component={Nearby}
+          name="Connect-chat"
+          component={Connect}
           options={{ headerShown: false }}
         />
         <Stack.Screen

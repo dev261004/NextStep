@@ -49,10 +49,10 @@ export default function HomeScreen() {
     // Add more post objects here
     {
       id: "2",
-      user: "Another User",
-      icon: require("../assets/pm.png"),
+      user: "Charusat",
+      icon: require("../assets/adaptive-icon.png"),
 
-      image: require("../assets/cm.png"), // Replace with your image
+      image: require("../assets/post/charusat.jpg"), // Replace with your image
       likes: 1234,
       comments: 567,
       description: "Sample Post 2",
@@ -60,10 +60,10 @@ export default function HomeScreen() {
     },
     {
       id: "3",
-      user: "A Third User",
-      icon: require("../assets/cm.png"),
+      user: "Narendra Modi",
+      icon: require("../assets/pm.png"),
 
-      image: require("../assets/mla1.png"), // Replace with your image
+      image: require("../assets/post/meloni.jpg"), // Replace with your image
       likes: 987,
       comments: 321,
       description: "Sample Post 3",
@@ -189,7 +189,7 @@ export default function HomeScreen() {
         style={styles.leadersCon}
       />
 
-      {/* Instagram-like Post Section */}
+      {/*  Post Section */}
       <FlatList
         data={posts}
         keyExtractor={(item) => item.id}
@@ -208,15 +208,15 @@ export default function HomeScreen() {
 
         <TouchableOpacity
           style={styles.tabsC}
-          onPress={() => navigation.navigate("Nearbytab")}
+          onPress={() => navigation.navigate("Connect-chat")}
         >
-          <Icon name="map-marker" size={28} color="#888" />
-          <Text style={styles.navText}>Near by</Text>
+          <Icon name="android-messages" size={28} color="#888" />
+          <Text style={styles.navText}> Connect</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabsC}
-          onPress={() => navigation.navigate("Cameratab")}
+          onPress={() => navigation.navigate("Submission")}
         >
           <Icon name="camera" size={28} color="#888" />
           <Text style={styles.navText}>Camera</Text>

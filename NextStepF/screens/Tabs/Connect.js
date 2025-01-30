@@ -17,7 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 // Get screen dimensions
 const { width, height } = Dimensions.get("window");
 
-export default function Nearby() {
+export default function Connect() {
   const [searchText, setSearchText] = useState("");
   const navigation = useNavigation();
 
@@ -145,22 +145,22 @@ export default function Nearby() {
 
       {/* Bottom Navigation */}
       <View style={styles.bottomNav}>
-        <TouchableOpacity style={styles.tabsC}
-          onPress={() => navigation.navigate("Home")}>
+        <TouchableOpacity
+          style={styles.tabsC}
+          onPress={() => navigation.navigate("Home")}
+        >
           <Icon name="home" size={28} color="#888" />
           <Text style={styles.navText}>Home</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.tabsC}
-        >
-          <Icon name="map-marker" size={28} color="#00A6F9" />
-          <Text style={styles.navTextActive}>Near by</Text>
+        <TouchableOpacity style={styles.tabsC}>
+          <Icon name="android-messages" size={28} color="#00A6F9" />
+          <Text style={styles.navTextActive}>Connect</Text>
         </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.tabsC}
-          onPress={() => navigation.navigate("Cameratab")}
+          onPress={() => navigation.navigate("Submission")}
         >
           <Icon name="camera" size={28} color="#888" />
           <Text style={styles.navText}>Camera</Text>
