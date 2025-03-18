@@ -40,7 +40,7 @@ NextStep bridges the gap between **local authorities and citizens** by providing
 ## 📱 Screenshots  
 | Home Page | Communities | Surveys |  
 |-----------|------------|---------|  
-| ![Home](https://github.com/dev261004/NextStep/tree/main/ScreenShot/home.png) | ![Communities](https://github.com/dev261004/NextStep/tree/main/ScreenShot/communities.png) | ![Surveys](https://github.com/dev261004/NextStep/tree/main/ScreenShot/surveys.png) |  
+| ![Home](ScreenShot/home.png) | ![Communities](https://github.com/dev261004/NextStep/tree/main/ScreenShot/communities.png) | ![Surveys](https://github.com/dev261004/NextStep/tree/main/ScreenShot/surveys.png) |  
 
 ---
 
