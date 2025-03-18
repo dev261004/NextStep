@@ -20,7 +20,7 @@ NextStep bridges the gap between **local authorities and citizens** by providing
 | Name          | Role                | GitHub ID |
 |--------------|---------------------|-----------|
 | **Dev Agrawal** | Backend Developer  | [dev261004](https://github.com/dev261004) |
-| **Pradeep** | Frontend Developer  | [YourGitHub](https://github.com/YourGitHub) |
+| **Pradeep** | Frontend Developer  | [Pradeep-1496](https://github.com/Pradeep-1496) |
 | **Kirtan Patel** | Frontend Developer | [GitHub](https://github.com/YourGitHub) |
 
 ---
