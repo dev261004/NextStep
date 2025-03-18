@@ -1,6 +1,8 @@
 # NextStep - Civic Engagement Platform
-
-![NextStep Banner](https://github.com/dev261004/NextStep/ScreenShot/banner.png)
+<div align="center">
+  <img src="ScreenShot/banner.png" alt="Image description" width="500"/><br/>
+</div> 
+<!-- ![NextStep Banner](https://github.com/dev261004/NextStep/ScreenShot/banner.png) -->
 
 ## 🚀 About the Project  
 NextStep is a **React Native** application developed during the **Odoo x CHARUSAT Hackathon** to empower marginalized communities by providing tools for civic engagement. The platform helps users **influence policy decisions, report local issues, and participate in community initiatives**.
