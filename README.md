@@ -23,7 +23,7 @@ NextStep bridges the gap between **local authorities and citizens** by providing
 |--------------|---------------------|-----------|
 | **Dev Agrawal** | Backend Developer  | [dev261004](https://github.com/dev261004) |
 | **Pradeep Prajapati** | Frontend Developer  | [Pradeep-1496](https://github.com/Pradeep-1496) |
-| **Kirtan Patel** | Frontend Developer | [Kirtan-64](https://github.com/Kirtan-64) |
+
 
 ---
 
