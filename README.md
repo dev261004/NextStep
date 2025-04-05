@@ -14,7 +14,7 @@ Marginalized communities often **struggle to access public services or influence
 NextStep bridges the gap between **local authorities and citizens** by providing:  
 - **Community Initiatives** – Crowdsourcing ideas for public improvement (waste management, park development, etc.).  
 - **Access to Services** – Streamlined interfaces for applying for government benefits, reporting issues, and accessing health services.  
-- **Policy Participation** – Tools for tracking local government actions, participating in surveys, and contacting representatives.  
+- **Policy Participation** – Tools for tracking local government actions, participating in surveys, and contacting representatives.
 
 ---
 
